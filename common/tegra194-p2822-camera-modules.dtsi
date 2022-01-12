@@ -20,6 +20,7 @@
 #include "tegra194-p2822-0000-camera-imx274-a00.dtsi"
 #include "tegra194-p2822-0000-camera-imx185-a00.dtsi"
 #include "tegra194-p2822-0000-camera-imx390-a00.dtsi"
+#include "tegra194-p2822-0000-camera-ar0820-a00.dtsi"
 #include "tegra194-e2832-hdmi.dtsi"
 #include "tegra194-p2822-0000-camera-vivid.dtsi"
 
