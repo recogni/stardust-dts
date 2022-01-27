@@ -451,6 +451,7 @@
 			vi_bw_margin_pct = <25>;
 			isp_peak_byte_per_pixel = <5>;
 			isp_bw_margin_pct = <25>;
+			min_bits_per_pixel = <12>;
 
 			modules {
 				cam_module0:module0 {
