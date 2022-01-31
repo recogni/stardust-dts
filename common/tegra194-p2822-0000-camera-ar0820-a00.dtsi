@@ -43,6 +43,8 @@
 				i2c@0 {
 					reg = <0>;
 					i2c-mux,deselect-on-exit;
+					#address-cells = <1>;
+        			#size-cells = <0>;
 
 					dser_a_ar0820:max9296@48 {
 						compatible = "nvidia,max9296";
@@ -102,6 +104,8 @@
 				i2c@1 {
 					reg = <1>;
 					i2c-mux,deselect-on-exit;
+					#address-cells = <1>;
+        			#size-cells = <0>;
 
 					dser_b_ar0820:max9296@48 {
 						compatible = "nvidia,max9296";
@@ -162,6 +166,8 @@
 				i2c@2 {
 					reg = <2>;
 					i2c-mux,deselect-on-exit;
+					#address-cells = <1>;
+        			#size-cells = <0>;
 
 					dser_c_ar0820:max9296@48 {
 						compatible = "nvidia,max9296";
@@ -222,6 +228,8 @@
 				i2c@3 {
 					reg = <0>;
 					i2c-mux,deselect-on-exit;
+					#address-cells = <1>;
+        			#size-cells = <0>;
 
 					dser_d_ar0820:max9296@48 {
 						compatible = "nvidia,max9296";
@@ -286,6 +294,8 @@
 
 			ports {
 				vi_port0: port@0 {
+					#address-cells = <1>;
+        			#size-cells = <0>;
 					reg = <0>;
 					status = "okay";
 					vi_in0: endpoint {
@@ -296,6 +306,8 @@
 					};
 				};
 				vi_port1: port@1 {
+					#address-cells = <1>;
+        			#size-cells = <0>;
 					reg = <1>;
 					status = "okay";
 					vi_in1: endpoint {
@@ -306,6 +318,8 @@
 					};
 				};
 				vi_port2: port@2 {
+					#address-cells = <1>;
+        			#size-cells = <0>;
 					reg = <2>;
 					status = "okay";
 					vi_in2: endpoint {
@@ -316,6 +330,8 @@
 					};
 				};
 				vi_port3: port@3 {
+					#address-cells = <1>;
+        			#size-cells = <0>;
 					reg = <3>;
 					status = "okay";
 					vi_in3: endpoint {
@@ -326,6 +342,8 @@
 					};
 				};
 				vi_port4: port@4 {
+					#address-cells = <1>;
+        			#size-cells = <0>;
 					reg = <4>;
 					status = "disabled";
 					vi_in4: endpoint {
@@ -334,6 +352,8 @@
 					};
 				};
 				vi_port5: port@5 {
+					#address-cells = <1>;
+        			#size-cells = <0>;
 					reg = <5>;
 					status = "disabled";
 					vi_in5: endpoint {
@@ -352,6 +372,8 @@
 				status = "okay";
 				ports {					
 					csi_chan0_port0: port@0 {
+						#address-cells = <1>;
+        				#size-cells = <0>;					
 						status = "okay";
 						reg = <0>;
 						csi_in0: endpoint@0 {
@@ -363,6 +385,8 @@
 						};
 					};
 					csi_chan0_port1: port@1 {
+						#address-cells = <1>;
+        				#size-cells = <0>;
 						status = "okay";
 						reg = <1>;
 						csi_out0: endpoint@1 {
@@ -376,6 +400,8 @@
 				status = "okay";
 				ports {
 					csi_chan1_port0: port@0 {
+						#address-cells = <1>;
+        				#size-cells = <0>;
 						status = "okay";
 						reg = <0>;
 						csi_in1: endpoint@2 {
@@ -386,6 +412,8 @@
 						};
 					};
 					csi_chan1_port1: port@1 {
+						#address-cells = <1>;
+        				#size-cells = <0>;
 						status = "okay";
 						reg = <1>;
 						csi_out1: endpoint@3 {
@@ -399,6 +427,8 @@
 				status = "okay";
 				ports {
 					csi_chan2_port0: port@0 {
+						#address-cells = <1>;
+        				#size-cells = <0>;
 						status = "okay";
 						reg = <0>;
 						csi_in2: endpoint@4 {
@@ -409,6 +439,8 @@
 						};
 					};
 					csi_chan2_port1: port@1 {
+						#address-cells = <1>;
+        				#size-cells = <0>;
 						status = "okay";
 						reg = <1>;
 						csi_out2: endpoint@5 {
@@ -422,6 +454,8 @@
 				status = "okay";
 				ports {
 					csi_chan3_port0: port@0 {
+						#address-cells = <1>;
+        				#size-cells = <0>;
 						status = "okay";
 						reg = <0>;
 						csi_in3: endpoint@6 {
@@ -432,6 +466,8 @@
 						};
 					};
 					csi_chan3_port1: port@1 {
+						#address-cells = <1>;
+        				#size-cells = <0>;
 						status = "okay";
 						reg = <1>;
 						csi_out3: endpoint@7 {
@@ -445,6 +481,8 @@
 				status = "disabled";
 				ports {
 					csi_chan4_port0: port@0 {
+						#address-cells = <1>;
+        				#size-cells = <0>;
 						status = "disabled";
 						reg = <0>;
 						csi_in4: endpoint@8 {
@@ -452,6 +490,8 @@
 						};
 					};
 					csi_chan4_port1: port@1 {
+						#address-cells = <1>;
+        				#size-cells = <0>;
 						status = "disabled";
 						reg = <1>;
 						csi_out4: endpoint@9 {
@@ -464,6 +504,8 @@
 				status = "disabled";
 				ports {
 					csi_chan5_port0: port@0 {
+						#address-cells = <1>;
+        				#size-cells = <0>;
 						status = "disabled";
 						reg = <0>;
 						csi_in5: endpoint@10 {
@@ -471,6 +513,8 @@
 						};
 					};
 					csi_chan5_port1: port@1 {
+						#address-cells = <1>;
+        				#size-cells = <0>;
 						status = "disabled";
 						reg = <1>;
 						csi_out5: endpoint@11 {
