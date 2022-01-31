@@ -39,6 +39,9 @@
 
 				// I2C mux select 0 on JCB002
 				i2c@0 {
+					reg = <0>;
+					i2c-mux,deselect-on-exit;
+
 					dser_a_ar0820:max9296@48 {
 						compatible = "nvidia,max9296";
 						reg = <0x48>;
@@ -95,6 +98,9 @@
 
 				// I2C mux select 1 on JCB002
 				i2c@1 {
+					reg = <1>;
+					i2c-mux,deselect-on-exit;
+
 					dser_b_ar0820:max9296@48 {
 						compatible = "nvidia,max9296";
 						reg = <0x48>;
@@ -152,6 +158,9 @@
 
 				// I2C mux select 2 on JCB002
 				i2c@2 {
+					reg = <2>;
+					i2c-mux,deselect-on-exit;
+
 					dser_c_ar0820:max9296@48 {
 						compatible = "nvidia,max9296";
 						reg = <0x48>;
@@ -209,6 +218,9 @@
 			
 				// I2C mux select 1 on JCB002
 				i2c@3 {
+					reg = <0>;
+					i2c-mux,deselect-on-exit;
+
 					dser_d_ar0820:max9296@48 {
 						compatible = "nvidia,max9296";
 						reg = <0x48>;
@@ -269,6 +281,7 @@
 		vi_base: vi@15c10000 {
 			ports {
 				vi_port0: port@0 {
+					reg = <0>;
 					status = "okay";
 					vi_in0: endpoint {
 						vc-id = <0>;
@@ -278,6 +291,7 @@
 					};
 				};
 				vi_port1: port@1 {
+					reg = <1>;
 					status = "okay";
 					vi_in1: endpoint {
 						vc-id = <0>;
@@ -287,6 +301,7 @@
 					};
 				};
 				vi_port2: port@2 {
+					reg = <2>;
 					status = "okay";
 					vi_in2: endpoint {
 						vc-id = <0>;
@@ -296,6 +311,7 @@
 					};
 				};
 				vi_port3: port@3 {
+					reg = <3>;
 					status = "okay";
 					vi_in3: endpoint {
 						vc-id = <0>;
@@ -305,6 +321,7 @@
 					};
 				};
 				vi_port4: port@4 {
+					reg = <4>;
 					status = "disabled";
 					vi_in4: endpoint {
 						vc-id = <0>;
@@ -312,6 +329,7 @@
 					};
 				};
 				vi_port5: port@5 {
+					reg = <5>;
 					status = "disabled";
 					vi_in5: endpoint {
 						vc-id = <0>;
@@ -328,6 +346,7 @@
 				ports {					
 					csi_chan0_port0: port@0 {
 						status = "okay";
+						reg = <0>;
 						csi_in0: endpoint@0 {
 							status = "okay";
 							port-index = <6>;
@@ -338,6 +357,7 @@
 					};
 					csi_chan0_port1: port@1 {
 						status = "okay";
+						reg = <1>;
 						csi_out0: endpoint@1 {
 							remote-endpoint = <&vi_port0>;
 							status = "okay";
@@ -350,6 +370,7 @@
 				ports {
 					csi_chan1_port0: port@0 {
 						status = "okay";
+						reg = <0>;
 						csi_in1: endpoint@2 {
 							status = "okay";
 							port-index = <0x4>;
@@ -359,6 +380,7 @@
 					};
 					csi_chan1_port1: port@1 {
 						status = "okay";
+						reg = <1>;
 						csi_out1: endpoint@3 {
 							remote-endpoint = <&vi_port1>;
 							status = "okay";
@@ -371,6 +393,7 @@
 				ports {
 					csi_chan2_port0: port@0 {
 						status = "okay";
+						reg = <0>;
 						csi_in2: endpoint@4 {
 							status = "okay";
 							port-index = <0x2>;
@@ -380,6 +403,7 @@
 					};
 					csi_chan2_port1: port@1 {
 						status = "okay";
+						reg = <1>;
 						csi_out2: endpoint@5 {
 							remote-endpoint = <&vi_port2>;
 							status = "okay";
@@ -392,6 +416,7 @@
 				ports {
 					csi_chan3_port0: port@0 {
 						status = "okay";
+						reg = <0>;
 						csi_in3: endpoint@6 {
 							status = "okay";
 							port-index = <0x0>;
@@ -401,6 +426,7 @@
 					};
 					csi_chan3_port1: port@1 {
 						status = "okay";
+						reg = <1>;
 						csi_out3: endpoint@7 {
 							remote-endpoint = <&vi_port3>;
 							status = "okay";
@@ -413,12 +439,14 @@
 				ports {
 					csi_chan4_port0: port@0 {
 						status = "disabled";
+						reg = <0>;
 						csi_in4: endpoint@8 {
 							status = "disabled";
 						};
 					};
 					csi_chan4_port1: port@1 {
 						status = "disabled";
+						reg = <1>;
 						csi_out4: endpoint@9 {
 							status = "disabled";
 						};
@@ -430,12 +458,14 @@
 				ports {
 					csi_chan5_port0: port@0 {
 						status = "disabled";
+						reg = <0>;
 						csi_in5: endpoint@10 {
 							status = "disabled";
 						};
 					};
 					csi_chan5_port1: port@1 {
 						status = "disabled";
+						reg = <1>;
 						csi_out5: endpoint@11 {
 							status = "disabled";
 						};
