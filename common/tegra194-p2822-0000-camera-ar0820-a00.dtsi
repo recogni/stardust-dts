@@ -22,7 +22,8 @@
 /* camera control gpio definitions */
 
 / {
-	host1x {
+	fragment@0 {
+		target-path = "/host1x";
 
 		i2c@c250000 {
 			#address-cells = <1>;
@@ -229,7 +230,7 @@
 					reg = <0>;
 					i2c-mux,deselect-on-exit;
 					#address-cells = <1>;
-        			#size-cells = <0>;
+        				#size-cells = <0>;
 
 					dser_d_ar0820:max9296@48 {
 						compatible = "nvidia,max9296";
