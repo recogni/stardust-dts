@@ -22,8 +22,6 @@
 /* camera control gpio definitions */
 
 / {
-	fragment@0 {
-		target-path = "/host1x";
 
 		i2c@c250000 {
 			#address-cells = <1>;
@@ -39,6 +37,7 @@
 				vcc-supply = <&p2822_vdd_1v8_cvb>;
 				vcc_lp = "vcc";
 				force_bus_start = <CAMERA_I2C_MUX_BUS(0)>;
+				status = "okay";				
 
 				// I2C mux select 0 on JCB002
 				i2c@0 {
@@ -76,6 +75,7 @@
 						mclk = "extperiph1";
 						nvidia,gmsl-ser-device = <&ser_a_ar0820>;
 						nvidia,gmsl-dser-device = <&dser_a_ar0820>;	
+						status = "okay";
 
 						ports {
 							reg = <0x0>;
@@ -90,7 +90,7 @@
 									bus-width = <0x4>;
 									remote-endpoint = <&csi_chan0_port0>;
 								};
-							}
+							};
 						};
 
 						gmsl-link {
@@ -142,6 +142,7 @@
 						mclk = "extperiph1";
 						nvidia,gmsl-ser-device = <&ser_b_ar0820>;
 						nvidia,gmsl-dser-device = <&dser_b_ar0820>;	
+						status = "okay";
 
 						ports {
 							reg = <0x0>;
@@ -209,6 +210,7 @@
 						mclk = "extperiph1";
 						nvidia,gmsl-ser-device = <&ser_c_ar0820>;
 						nvidia,gmsl-dser-device = <&dser_c_ar0820>;	
+						status = "okay";
 
 						ports {
 							reg = <0x0>;
@@ -276,6 +278,7 @@
 						mclk = "extperiph1";
 						nvidia,gmsl-ser-device = <&ser_d_ar0820>;
 						nvidia,gmsl-dser-device = <&dser_d_ar0820>;	
+						status = "okay";
 
 						ports {
 							#address-cells = <1>;
@@ -311,7 +314,8 @@
 
 		vi_base: vi@15c10000 {
 			#address-cells = <1>;
-        	#size-cells = <0>;
+        		#size-cells = <0>;
+			status = "okay";
 
 			ports {
 				vi_port0: port@0 {
@@ -387,8 +391,10 @@
 
 		csi_base: nvcsi@15a00000 {
 			#address-cells = <1>;
-        	#size-cells = <0>;
+        		#size-cells = <0>;
 			num-tpg-channels = <36>;
+		 	status = "okay"; 
+	
 			csi_chan0: channel@0 {
 				status = "okay";
 				ports {					
@@ -562,7 +568,9 @@
 					badge = "ar0820_a";
 					position = "topleft";
 					orientation = "1";
+					status = "okay";
 					drivernode0 {
+						status = "okay";
 						pcl_id = "v4l2_sensor";
 						devname = "ar0820 30-0010";
 						proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@0/ar0820_a@10";
@@ -573,7 +581,9 @@
 					badge = "ar0820_b";
 					position = "bottomleft";
 					orientation = "1";
+					status = "okay";
 					drivernode0 {
+						status = "okay";
 						pcl_id = "v4l2_sensor";
 						devname = "ar0820 31-0010";
 						proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@1/ar0820_b@10";
@@ -584,7 +594,9 @@
 					badge = "ar0820_c";
 					position = "topright";
 					orientation = "1";
+					status = "okay";
 					drivernode0 {
+						status = "okay";
 						pcl_id = "v4l2_sensor";
 						devname = "ar0820 32-0010";
 						proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@2/ar0820_c@10";
@@ -595,7 +607,9 @@
 					badge = "ar0820_d";
 					position = "bottomright";
 					orientation = "1";
+					status = "okay";
 					drivernode0 {
+						status = "okay";
 						pcl_id = "v4l2_sensor";
 						devname = "ar0820 33-0010";
 						proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@3/ar0820_d@10";
@@ -603,5 +617,4 @@
 				};
 			};
 		};
-	};
 };
