@@ -22,300 +22,300 @@
 /* camera control gpio definitions */
 
 / {
+	i2c@c250000 {
+		#address-cells = <1>;
+		#size-cells = <0>;
 
-		i2c@c250000 {
+		tca9546@72 {
+			compatible = "nxp,pca9546";
+			reg = <0x72>;
 			#address-cells = <1>;
-          	#size-cells = <0>;
+			#size-cells = <0>;
+			skip_mux_detect = "yes";
+			vif-supply = <&p2822_vdd_1v8_cvb>;
+			vcc-supply = <&p2822_vdd_1v8_cvb>;
+			vcc_lp = "vcc";
+			force_bus_start = <CAMERA_I2C_MUX_BUS(0)>;
+			status = "okay";				
 
-			tca9546@72 {
-				compatible = "nxp,pca9546";
-				reg = <0x72>;
+			// I2C mux select 0 on JCB002
+			i2c@0 {
+				reg = <0>;
+				i2c-mux,deselect-on-exit;
 				#address-cells = <1>;
 				#size-cells = <0>;
-				skip_mux_detect = "yes";
-				vif-supply = <&p2822_vdd_1v8_cvb>;
-				vcc-supply = <&p2822_vdd_1v8_cvb>;
-				vcc_lp = "vcc";
-				force_bus_start = <CAMERA_I2C_MUX_BUS(0)>;
-				status = "okay";				
 
-				// I2C mux select 0 on JCB002
-				i2c@0 {
-					reg = <0>;
-					i2c-mux,deselect-on-exit;
-					#address-cells = <1>;
-        			#size-cells = <0>;
-
-					dser_a_ar0820: max9296@48 {
-						compatible = "nvidia,max9296";
-						reg = <0x48>;
-						csi-mode = "2x4";
-						max-src = <1>;
-						reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
-					};
-
-					ser_a_ar0820: max9295_prim@62 {
-						compatible = "nvidia,max9295";
-						reg = <0x62>;
-					};
-
-					ar0820_a: ar0820@10 {
-						compatible = "nvidia,ar0820";
-						reg = <0x10>;
-						def-addr = <0x10>;
-						reg_mux = <0x1>;
-						physical_w = "15.0";
-						physical_h = "12.5";
-						sensor_model = "ar0820";
-						post_crop_frame_drop = [30 00];
-						use_decibel_gain = "true";
-						use_sensor_mode_id = "true";
-						clocks = <0x4 0x24 0x4 0x24>;
-						clock-names = "extperiph1", "pllp_grtba";
-						mclk = "extperiph1";
-						nvidia,gmsl-ser-device = <&ser_a_ar0820>;
-						nvidia,gmsl-dser-device = <&dser_a_ar0820>;	
-						status = "okay";
-
-						ports {
-							reg = <0x0>;
-							#address-cells = <1>;
-							#size-cells = <0>;
-							
-							port@0 {
-								reg = <0>;
-								ar0820_a_out: endpoint {
-									vc-id = <0x0>;
-									port-index = <0x4>;
-									bus-width = <0x4>;
-									remote-endpoint = <&csi_chan0_port0>;
-								};
-							};
-						};
-
-						gmsl-link {
-							src-csi-port = "b";
-							dst-csi-port = "a";
-							serdes-csi-link = "a";
-							csi-mode = "1x4";
-							st-vc = <0x0>;
-							vc-id = <0x0>;
-							num-lanes = <0x4>;
-							streams = "raw12";
-						};
-					};
+				dser_a_ar0820: max9296@48 {
+					compatible = "nvidia,max9296";
+					reg = <0x48>;
+					csi-mode = "2x4";
+					max-src = <1>;
+					reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
 				};
 
-				// I2C mux select 1 on JCB002
-				i2c@1 {
-					reg = <1>;
-					i2c-mux,deselect-on-exit;
-					#address-cells = <1>;
-        			#size-cells = <0>;
-
-					dser_b_ar0820: max9296@48 {
-						compatible = "nvidia,max9296";
-						reg = <0x48>;
-						csi-mode = "2x4";
-						max-src = <1>;
-						reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
-					};
-
-					ser_b_ar0820: max9295_prim@62 {
-						compatible = "nvidia,max9295";
-						reg = <0x62>;
-					};
-
-					ar0820_b:  ar0820@10 {
-						compatible = "nvidia,ar0820";
-						reg = <0x10>;
-						def-addr = <0x10>;
-						reg_mux = <0x1>;
-						physical_w = "15.0";
-						physical_h = "12.5";
-						sensor_model = "ar0820";
-						post_crop_frame_drop = [30 00];
-						use_decibel_gain = "true";
-						use_sensor_mode_id = "true";
-						clocks = <0x4 0x24 0x4 0x24>;
-						clock-names = "extperiph1", "pllp_grtba";
-						mclk = "extperiph1";
-						nvidia,gmsl-ser-device = <&ser_b_ar0820>;
-						nvidia,gmsl-dser-device = <&dser_b_ar0820>;	
-						status = "okay";
-
-						ports {
-							reg = <0x0>;
-							#address-cells = <1>;
-							#size-cells = <0>;
-
-							port@0 {
-								reg = <0>;
-								ar0820_b_out: endpoint {
-									vc-id = <0x0>;
-									port-index = <0x4>;
-									bus-width = <0x4>;
-									remote-endpoint = <&csi_chan1_port0>;
-								};
-							};
-						};
-
-						gmsl-link {
-							src-csi-port = "b";
-							dst-csi-port = "a";
-							serdes-csi-link = "a";
-							csi-mode = "1x4";
-							st-vc = <0x0>;
-							vc-id = <0x0>;
-							num-lanes = <0x4>;
-							streams = "raw12";
-						};
-					};
+				ser_a_ar0820: max9295_prim@62 {
+					compatible = "nvidia,max9295";
+					reg = <0x62>;
 				};
 
+				ar0820_a: ar0820@10 {
+					compatible = "nvidia,ar0820";
+					reg = <0x10>;
+					def-addr = <0x10>;
+					reg_mux = <0x1>;
+					physical_w = "15.0";
+					physical_h = "12.5";
+					sensor_model = "ar0820";
+					post_crop_frame_drop = [30 00];
+					use_decibel_gain = "true";
+					use_sensor_mode_id = "true";
+					clocks = <0x4 0x24 0x4 0x24>;
+					clock-names = "extperiph1", "pllp_grtba";
+					mclk = "extperiph1";
+					nvidia,gmsl-ser-device = <&ser_a_ar0820>;
+					nvidia,gmsl-dser-device = <&dser_a_ar0820>;	
+					status = "okay";
 
-				// I2C mux select 2 on JCB002
-				i2c@2 {
-					reg = <2>;
-					i2c-mux,deselect-on-exit;
-					#address-cells = <1>;
-        			#size-cells = <0>;
-
-					dser_c_ar0820: max9296@48 {
-						compatible = "nvidia,max9296";
-						reg = <0x48>;
-						csi-mode = "2x4";
-						max-src = <1>;
-						reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
-					};
-
-					ser_c_ar0820: max9295_prim@62 {
-						compatible = "nvidia,max9295";
-						reg = <0x62>;
-					};
-
-					ar0820_c: ar0820@10 {
-						compatible = "nvidia,ar0820";
-						reg = <0x10>;
-						def-addr = <0x10>;
-						reg_mux = <0x1>;
-						physical_w = "15.0";
-						physical_h = "12.5";
-						sensor_model = "ar0820";
-						post_crop_frame_drop = [30 00];
-						use_decibel_gain = "true";
-						use_sensor_mode_id = "true";
-						clocks = <0x4 0x24 0x4 0x24>;
-						clock-names = "extperiph1", "pllp_grtba";
-						mclk = "extperiph1";
-						nvidia,gmsl-ser-device = <&ser_c_ar0820>;
-						nvidia,gmsl-dser-device = <&dser_c_ar0820>;	
-						status = "okay";
-
-						ports {
-							reg = <0x0>;
-							#address-cells = <1>;
-							#size-cells = <0>;
-
-							port@0 {
-								reg = <0>;
-								ar0820_c_out: endpoint {
-									vc-id = <0x0>;
-									port-index = <0x4>;
-									bus-width = <0x4>;
-									remote-endpoint = <&csi_chan2_port0>;
-								};
+					ports {
+						reg = <0x0>;
+						#address-cells = <1>;
+						#size-cells = <0>;
+						
+						port@0 {
+							reg = <0>;
+							ar0820_a_out: endpoint {
+								vc-id = <0x0>;
+								port-index = <0x4>;
+								bus-width = <0x4>;
+								remote-endpoint = <&csi_chan0_port0>;
 							};
 						};
+					};
 
-						gmsl-link {
-							src-csi-port = "b";
-							dst-csi-port = "a";
-							serdes-csi-link = "a";
-							csi-mode = "1x4";
-							st-vc = <0x0>;
-							vc-id = <0x0>;
-							num-lanes = <0x4>;
-							streams = "raw12";
-						};
+					gmsl-link {
+						src-csi-port = "b";
+						dst-csi-port = "a";
+						serdes-csi-link = "a";
+						csi-mode = "1x4";
+						st-vc = <0x0>;
+						vc-id = <0x0>;
+						num-lanes = <0x4>;
+						streams = "raw12";
 					};
 				};
+			};
 
-			
-				// I2C mux select 1 on JCB002
-				i2c@3 {
-					reg = <0>;
-					i2c-mux,deselect-on-exit;
-					#address-cells = <1>;
-        				#size-cells = <0>;
+			// I2C mux select 1 on JCB002
+			i2c@1 {
+				reg = <1>;
+				i2c-mux,deselect-on-exit;
+				#address-cells = <1>;
+				#size-cells = <0>;
 
-					dser_d_ar0820: max9296@48 {
-						compatible = "nvidia,max9296";
-						reg = <0x48>;
-						csi-mode = "2x4";
-						max-src = <1>;
-						reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
-					};
+				dser_b_ar0820: max9296@48 {
+					compatible = "nvidia,max9296";
+					reg = <0x48>;
+					csi-mode = "2x4";
+					max-src = <1>;
+					reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
+				};
 
-					ser_d_ar0820: max9295_prim@62 {
-						compatible = "nvidia,max9295";
-						reg = <0x62>;
-					};
+				ser_b_ar0820: max9295_prim@62 {
+					compatible = "nvidia,max9295";
+					reg = <0x62>;
+				};
 
-					ar0820_d: ar0820@10 {
-						compatible = "nvidia,ar0820";
-						reg = <0x10>;
-						def-addr = <0x10>;
-						reg_mux = <0x1>;
-						physical_w = "15.0";
-						physical_h = "12.5";
-						sensor_model = "ar0820";
-						post_crop_frame_drop = [30 00];
-						use_decibel_gain = "true";
-						use_sensor_mode_id = "true";
-						clocks = <0x4 0x24 0x4 0x24>;
-						clock-names = "extperiph1", "pllp_grtba";
-						mclk = "extperiph1";
-						nvidia,gmsl-ser-device = <&ser_d_ar0820>;
-						nvidia,gmsl-dser-device = <&dser_d_ar0820>;	
-						status = "okay";
+				ar0820_b:  ar0820@10 {
+					compatible = "nvidia,ar0820";
+					reg = <0x10>;
+					def-addr = <0x10>;
+					reg_mux = <0x1>;
+					physical_w = "15.0";
+					physical_h = "12.5";
+					sensor_model = "ar0820";
+					post_crop_frame_drop = [30 00];
+					use_decibel_gain = "true";
+					use_sensor_mode_id = "true";
+					clocks = <0x4 0x24 0x4 0x24>;
+					clock-names = "extperiph1", "pllp_grtba";
+					mclk = "extperiph1";
+					nvidia,gmsl-ser-device = <&ser_b_ar0820>;
+					nvidia,gmsl-dser-device = <&dser_b_ar0820>;	
+					status = "okay";
 
-						ports {
-							#address-cells = <1>;
-							#size-cells = <0>;
-							reg = <0x0>;
+					ports {
+						reg = <0x0>;
+						#address-cells = <1>;
+						#size-cells = <0>;
 
-							port@0 {
-								reg = <0>;
-								ar0820_d_out: endpoint {
-									vc-id = <0x0>;
-									port-index = <0x4>;
-									bus-width = <0x4>;
-									remote-endpoint = <&csi_chan4_port0>;
-								};
+						port@0 {
+							reg = <0>;
+							ar0820_b_out: endpoint {
+								vc-id = <0x0>;
+								port-index = <0x4>;
+								bus-width = <0x4>;
+								remote-endpoint = <&csi_chan1_port0>;
 							};
 						};
+					};
 
-						gmsl-link {
-							src-csi-port = "b";
-							dst-csi-port = "a";
-							serdes-csi-link = "a";
-							csi-mode = "1x4";
-							st-vc = <0x0>;
-							vc-id = <0x0>;
-							num-lanes = <0x4>;
-							streams = "raw12";
-						};
+					gmsl-link {
+						src-csi-port = "b";
+						dst-csi-port = "a";
+						serdes-csi-link = "a";
+						csi-mode = "1x4";
+						st-vc = <0x0>;
+						vc-id = <0x0>;
+						num-lanes = <0x4>;
+						streams = "raw12";
 					};
 				};
-			};	
-		};
+			};
 
 
+			// I2C mux select 2 on JCB002
+			i2c@2 {
+				reg = <2>;
+				i2c-mux,deselect-on-exit;
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				dser_c_ar0820: max9296@48 {
+					compatible = "nvidia,max9296";
+					reg = <0x48>;
+					csi-mode = "2x4";
+					max-src = <1>;
+					reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
+				};
+
+				ser_c_ar0820: max9295_prim@62 {
+					compatible = "nvidia,max9295";
+					reg = <0x62>;
+				};
+
+				ar0820_c: ar0820@10 {
+					compatible = "nvidia,ar0820";
+					reg = <0x10>;
+					def-addr = <0x10>;
+					reg_mux = <0x1>;
+					physical_w = "15.0";
+					physical_h = "12.5";
+					sensor_model = "ar0820";
+					post_crop_frame_drop = [30 00];
+					use_decibel_gain = "true";
+					use_sensor_mode_id = "true";
+					clocks = <0x4 0x24 0x4 0x24>;
+					clock-names = "extperiph1", "pllp_grtba";
+					mclk = "extperiph1";
+					nvidia,gmsl-ser-device = <&ser_c_ar0820>;
+					nvidia,gmsl-dser-device = <&dser_c_ar0820>;	
+					status = "okay";
+
+					ports {
+						reg = <0x0>;
+						#address-cells = <1>;
+						#size-cells = <0>;
+
+						port@0 {
+							reg = <0>;
+							ar0820_c_out: endpoint {
+								vc-id = <0x0>;
+								port-index = <0x4>;
+								bus-width = <0x4>;
+								remote-endpoint = <&csi_chan2_port0>;
+							};
+						};
+					};
+
+					gmsl-link {
+						src-csi-port = "b";
+						dst-csi-port = "a";
+						serdes-csi-link = "a";
+						csi-mode = "1x4";
+						st-vc = <0x0>;
+						vc-id = <0x0>;
+						num-lanes = <0x4>;
+						streams = "raw12";
+					};
+				};
+			};
+
+		
+			// I2C mux select 1 on JCB002
+			i2c@3 {
+				reg = <0>;
+				i2c-mux,deselect-on-exit;
+				#address-cells = <1>;
+					#size-cells = <0>;
+
+				dser_d_ar0820: max9296@48 {
+					compatible = "nvidia,max9296";
+					reg = <0x48>;
+					csi-mode = "2x4";
+					max-src = <1>;
+					reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
+				};
+
+				ser_d_ar0820: max9295_prim@62 {
+					compatible = "nvidia,max9295";
+					reg = <0x62>;
+				};
+
+				ar0820_d: ar0820@10 {
+					compatible = "nvidia,ar0820";
+					reg = <0x10>;
+					def-addr = <0x10>;
+					reg_mux = <0x1>;
+					physical_w = "15.0";
+					physical_h = "12.5";
+					sensor_model = "ar0820";
+					post_crop_frame_drop = [30 00];
+					use_decibel_gain = "true";
+					use_sensor_mode_id = "true";
+					clocks = <0x4 0x24 0x4 0x24>;
+					clock-names = "extperiph1", "pllp_grtba";
+					mclk = "extperiph1";
+					nvidia,gmsl-ser-device = <&ser_d_ar0820>;
+					nvidia,gmsl-dser-device = <&dser_d_ar0820>;	
+					status = "okay";
+
+					ports {
+						#address-cells = <1>;
+						#size-cells = <0>;
+						reg = <0x0>;
+
+						port@0 {
+							reg = <0>;
+							ar0820_d_out: endpoint {
+								vc-id = <0x0>;
+								port-index = <0x4>;
+								bus-width = <0x4>;
+								remote-endpoint = <&csi_chan4_port0>;
+							};
+						};
+					};
+
+					gmsl-link {
+						src-csi-port = "b";
+						dst-csi-port = "a";
+						serdes-csi-link = "a";
+						csi-mode = "1x4";
+						st-vc = <0x0>;
+						vc-id = <0x0>;
+						num-lanes = <0x4>;
+						streams = "raw12";
+					};
+				};
+			};
+		};	
+	};
+
+	host1x {
 		vi_base: vi@15c10000 {
 			#address-cells = <1>;
-        		#size-cells = <0>;
+        	#size-cells = <0>;
 			status = "okay";
+			num-channels = <6>;
 
 			ports {
 				vi_port0: port@0 {
@@ -391,8 +391,9 @@
 
 		csi_base: nvcsi@15a00000 {
 			#address-cells = <1>;
-        		#size-cells = <0>;
+        	#size-cells = <0>;
 			num-tpg-channels = <36>;
+			num-channels = <6>;
 		 	status = "okay"; 
 	
 			csi_chan0: channel@0 {
@@ -551,70 +552,71 @@
 				};
 			};
 		};
+	};
 
-		tegra-camera-platform {
-			compatible = "nvidia, tegra-camera-platform";
-			num_csi_lanes = <16>;
-			max_lane_speed = <1500000>;
-			min_bits_per_pixel = <12>;
-			vi_peak_byte_per_pixel = <2>;
-			vi_bw_margin_pct = <25>;
-			max_pixel_rate = <252979>;
-			isp_peak_byte_per_pixel = <5>;
-			isp_bw_margin_pct = <25>;
+	tegra-camera-platform {
+		compatible = "nvidia, tegra-camera-platform";
+		num_csi_lanes = <16>;
+		max_lane_speed = <1500000>;
+		min_bits_per_pixel = <12>;
+		vi_peak_byte_per_pixel = <2>;
+		vi_bw_margin_pct = <25>;
+		max_pixel_rate = <252979>;
+		isp_peak_byte_per_pixel = <5>;
+		isp_bw_margin_pct = <25>;
 
-			modules {
-				cam_module0: module0 {
-					badge = "ar0820_a";
-					position = "topleft";
-					orientation = "1";
+		modules {
+			cam_module0: module0 {
+				badge = "ar0820_a";
+				position = "topleft";
+				orientation = "1";
+				status = "okay";
+				drivernode0 {
 					status = "okay";
-					drivernode0 {
-						status = "okay";
-						pcl_id = "v4l2_sensor";
-						devname = "ar0820 30-0010";
-						proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@0/ar0820_a@10";
-					};
+					pcl_id = "v4l2_sensor";
+					devname = "ar0820 30-0010";
+					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@0/ar0820_a@10";
 				};
+			};
 
-				cam_module1: module1 {
-					badge = "ar0820_b";
-					position = "bottomleft";
-					orientation = "1";
+			cam_module1: module1 {
+				badge = "ar0820_b";
+				position = "bottomleft";
+				orientation = "1";
+				status = "okay";
+				drivernode0 {
 					status = "okay";
-					drivernode0 {
-						status = "okay";
-						pcl_id = "v4l2_sensor";
-						devname = "ar0820 31-0010";
-						proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@1/ar0820_b@10";
-					};
+					pcl_id = "v4l2_sensor";
+					devname = "ar0820 31-0010";
+					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@1/ar0820_b@10";
 				};
+			};
 
-				cam_module2: module2 {
-					badge = "ar0820_c";
-					position = "topright";
-					orientation = "1";
+			cam_module2: module2 {
+				badge = "ar0820_c";
+				position = "topright";
+				orientation = "1";
+				status = "okay";
+				drivernode0 {
 					status = "okay";
-					drivernode0 {
-						status = "okay";
-						pcl_id = "v4l2_sensor";
-						devname = "ar0820 32-0010";
-						proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@2/ar0820_c@10";
-					};
+					pcl_id = "v4l2_sensor";
+					devname = "ar0820 32-0010";
+					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@2/ar0820_c@10";
 				};
+			};
 
-				cam_module3: module3 {
-					badge = "ar0820_d";
-					position = "bottomright";
-					orientation = "1";
+			cam_module3: module3 {
+				badge = "ar0820_d";
+				position = "bottomright";
+				orientation = "1";
+				status = "okay";
+				drivernode0 {
 					status = "okay";
-					drivernode0 {
-						status = "okay";
-						pcl_id = "v4l2_sensor";
-						devname = "ar0820 33-0010";
-						proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@3/ar0820_d@10";
-					};
+					pcl_id = "v4l2_sensor";
+					devname = "ar0820 33-0010";
+					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@3/ar0820_d@10";
 				};
 			};
 		};
+	};
 };
