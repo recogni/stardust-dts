@@ -463,15 +463,14 @@
 
 	host1x {
 		vi_base: vi@15c10000 {
-			#address-cells = <1>;
-        		#size-cells = <0>;
 			status = "okay";
 			num-channels = <4>;
 
 			ports {
+				#address-cells = <1>;
+				#size-cells = <0>;
+				
 				vi_port0: port@0 {
-					#address-cells = <1>;
-        			#size-cells = <0>;
 					reg = <0>;
 					status = "okay";
 					vi_in0: endpoint {
@@ -483,8 +482,6 @@
 					};
 				};
 				vi_port1: port@1 {
-					#address-cells = <1>;
-        			#size-cells = <0>;
 					reg = <1>;
 					status = "okay";
 					vi_in1: endpoint {
@@ -496,8 +493,6 @@
 					};
 				};
 				vi_port2: port@2 {
-					#address-cells = <1>;
-        			#size-cells = <0>;
 					reg = <2>;
 					status = "okay";
 					vi_in2: endpoint {
@@ -509,8 +504,6 @@
 					};
 				};
 				vi_port3: port@3 {
-					#address-cells = <1>;
-        			#size-cells = <0>;
 					reg = <3>;
 					status = "okay";
 					vi_in3: endpoint {
@@ -532,10 +525,12 @@
 			csi_chan0: channel@0 {
 				status = "okay";
 				reg = <0>;
-				ports {					
+				ports {
+					#address-cells = <1>;
+        			#size-cells = <0>;			
+									
 					csi_chan0_port0: port@0 {
-						#address-cells = <1>;
-        				#size-cells = <0>;					
+		
 						status = "okay";
 						reg = <0>;
 						csi_in0: endpoint@0 {
@@ -547,8 +542,7 @@
 						};
 					};
 					csi_chan0_port1: port@1 {
-						#address-cells = <1>;
-        				#size-cells = <0>;
+
 						status = "okay";
 						reg = <1>;
 						csi_out0: endpoint@1 {
@@ -562,9 +556,11 @@
 				status = "okay";
 				reg = <1>;
 				ports {
+					#address-cells = <1>;
+        			#size-cells = <0>;	
+
 					csi_chan1_port0: port@0 {
-						#address-cells = <1>;
-        				#size-cells = <0>;
+
 						status = "okay";
 						reg = <0>;
 						csi_in1: endpoint@2 {
@@ -575,8 +571,7 @@
 						};
 					};
 					csi_chan1_port1: port@1 {
-						#address-cells = <1>;
-        				#size-cells = <0>;
+
 						status = "okay";
 						reg = <1>;
 						csi_out1: endpoint@3 {
@@ -590,9 +585,10 @@
 				status = "okay";
 				reg = <2>;
 				ports {
+					#address-cells = <1>;
+        			#size-cells = <0>;	
+
 					csi_chan2_port0: port@0 {
-						#address-cells = <1>;
-        				#size-cells = <0>;
 						status = "okay";
 						reg = <0>;
 						csi_in2: endpoint@4 {
@@ -603,8 +599,6 @@
 						};
 					};
 					csi_chan2_port1: port@1 {
-						#address-cells = <1>;
-        				#size-cells = <0>;
 						status = "okay";
 						reg = <1>;
 						csi_out2: endpoint@5 {
@@ -618,9 +612,10 @@
 				status = "okay";
 				reg = <3>;
 				ports {
+					#address-cells = <1>;
+        			#size-cells = <0>;
+
 					csi_chan3_port0: port@0 {
-						#address-cells = <1>;
-        				#size-cells = <0>;
 						status = "okay";
 						reg = <0>;
 						csi_in3: endpoint@6 {
@@ -631,8 +626,6 @@
 						};
 					};
 					csi_chan3_port1: port@1 {
-						#address-cells = <1>;
-        				#size-cells = <0>;
 						status = "okay";
 						reg = <1>;
 						csi_out3: endpoint@7 {
