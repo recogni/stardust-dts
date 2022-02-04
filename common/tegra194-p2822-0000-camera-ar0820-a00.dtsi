@@ -36,7 +36,6 @@
 			vcc-supply = <&p2822_vdd_1v8_cvb>;
 			vcc_lp = "vcc";
 			force_bus_start = <CAMERA_I2C_MUX_BUS(0)>;
-			status = "okay";				
 
 			// I2C mux select 0 on JCB002
 			i2c@0 {
@@ -50,7 +49,7 @@
 					reg = <0x48>;
 					csi-mode = "2x4";
 					max-src = <1>;
-					reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
+					reset-gpios =  <&tegra_main_gpio 0x3b GPIO_ACTIVE_HIGH>;
 				};
 
 				ser_a_ar0820: max9295_prim@62 {
@@ -58,7 +57,7 @@
 					reg = <0x62>;
 				};
 
-				ar0820_a: ar0820@10 {
+				ar0820_a: ar0820_a@10 {
 					compatible = "nvidia,ar0820";
 					reg = <0x10>;
 					def-addr = <0x10>;
@@ -74,7 +73,6 @@
 					mclk = "extperiph1";
 					nvidia,gmsl-ser-device = <&ser_a_ar0820>;
 					nvidia,gmsl-dser-device = <&dser_a_ar0820>;	
-					status = "okay";
 
 					ports {
 						reg = <0x0>;
@@ -85,7 +83,7 @@
 							reg = <0>;
 							ar0820_a_out: endpoint {
 								vc-id = <0x0>;
-								port-index = <0x4>;
+								port-index = <0x6>;
 								bus-width = <0x4>;
 								remote-endpoint = <&csi_chan0_port0>;
 							};
@@ -117,7 +115,7 @@
 					reg = <0x48>;
 					csi-mode = "2x4";
 					max-src = <1>;
-					reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
+					reset-gpios =  <&tegra_main_gpio 0x3e GPIO_ACTIVE_HIGH>;
 				};
 
 				ser_b_ar0820: max9295_prim@62 {
@@ -125,7 +123,7 @@
 					reg = <0x62>;
 				};
 
-				ar0820_b:  ar0820@10 {
+				ar0820_b:  ar0820_b@10 {
 					compatible = "nvidia,ar0820";
 					reg = <0x10>;
 					def-addr = <0x10>;
@@ -141,7 +139,6 @@
 					mclk = "extperiph1";
 					nvidia,gmsl-ser-device = <&ser_b_ar0820>;
 					nvidia,gmsl-dser-device = <&dser_b_ar0820>;	
-					status = "okay";
 
 					ports {
 						reg = <0x0>;
@@ -185,7 +182,7 @@
 					reg = <0x48>;
 					csi-mode = "2x4";
 					max-src = <1>;
-					reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
+					reset-gpios =  <&tegra_main_gpio 0x9e GPIO_ACTIVE_HIGH>;
 				};
 
 				ser_c_ar0820: max9295_prim@62 {
@@ -193,7 +190,7 @@
 					reg = <0x62>;
 				};
 
-				ar0820_c: ar0820@10 {
+				ar0820_c: ar0820_c@10 {
 					compatible = "nvidia,ar0820";
 					reg = <0x10>;
 					def-addr = <0x10>;
@@ -209,7 +206,6 @@
 					mclk = "extperiph1";
 					nvidia,gmsl-ser-device = <&ser_c_ar0820>;
 					nvidia,gmsl-dser-device = <&dser_c_ar0820>;	
-					status = "okay";
 
 					ports {
 						reg = <0x0>;
@@ -220,7 +216,7 @@
 							reg = <0>;
 							ar0820_c_out: endpoint {
 								vc-id = <0x0>;
-								port-index = <0x4>;
+								port-index = <0x2>;
 								bus-width = <0x4>;
 								remote-endpoint = <&csi_chan2_port0>;
 							};
@@ -253,7 +249,7 @@
 					reg = <0x48>;
 					csi-mode = "2x4";
 					max-src = <1>;
-					reset-gpios =  <&tegra_main_gpio CAM0_RST_L GPIO_ACTIVE_HIGH>;
+					reset-gpios =  <&tegra_main_gpio 0x9d GPIO_ACTIVE_HIGH>;
 				};
 
 				ser_d_ar0820: max9295_prim@62 {
@@ -261,7 +257,7 @@
 					reg = <0x62>;
 				};
 
-				ar0820_d: ar0820@10 {
+				ar0820_d: ar0820_d@10 {
 					compatible = "nvidia,ar0820";
 					reg = <0x10>;
 					def-addr = <0x10>;
@@ -277,7 +273,6 @@
 					mclk = "extperiph1";
 					nvidia,gmsl-ser-device = <&ser_d_ar0820>;
 					nvidia,gmsl-dser-device = <&dser_d_ar0820>;	
-					status = "okay";
 
 					ports {
 						#address-cells = <1>;
@@ -288,9 +283,9 @@
 							reg = <0>;
 							ar0820_d_out: endpoint {
 								vc-id = <0x0>;
-								port-index = <0x4>;
+								port-index = <0x0>;
 								bus-width = <0x4>;
-								remote-endpoint = <&csi_chan4_port0>;
+								remote-endpoint = <&csi_chan3_port0>;
 							};
 						};
 					};
@@ -313,9 +308,9 @@
 	host1x {
 		vi_base: vi@15c10000 {
 			#address-cells = <1>;
-        	#size-cells = <0>;
+        		#size-cells = <0>;
 			status = "okay";
-			num-channels = <6>;
+			num-channels = <4>;
 
 			ports {
 				vi_port0: port@0 {
@@ -325,9 +320,10 @@
 					status = "okay";
 					vi_in0: endpoint {
 						vc-id = <0>;
-						port-index = <5>;
+						port-index = <6>;
 						bus-width = <0x4>;
 						status = "okay";
+						remote-endpoint = <&csi_chan0_port1>;
 					};
 				};
 				vi_port1: port@1 {
@@ -340,6 +336,7 @@
 						port-index = <4>;
 						bus-width = <0x4>;
 						status = "okay";
+						remote-endpoint = <&csi_chan1_port1>;						
 					};
 				};
 				vi_port2: port@2 {
@@ -352,6 +349,7 @@
 						port-index = <2>;
 						bus-width = <0x4>;
 						status = "okay";
+						remote-endpoint = <&csi_chan2_port1>;												
 					};
 				};
 				vi_port3: port@3 {
@@ -364,27 +362,7 @@
 						port-index = <0>;
 						bus-width = <0x4>;
 						status = "okay";
-					};
-				};
-				vi_port4: port@4 {
-					#address-cells = <1>;
-        			#size-cells = <0>;
-					reg = <4>;
-					status = "disabled";
-					vi_in4: endpoint {
-						vc-id = <0>;
-						status = "disabled";
-					};
-				};
-				vi_port5: port@5 {
-					#address-cells = <1>;
-        			#size-cells = <0>;
-					reg = <5>;
-					status = "disabled";
-					vi_in5: endpoint {
-						vc-id = <0>;
-						status = "disabled";
-					};
+						remote-endpoint = <&csi_chan3_port1>;																};
 				};
 			};
 		};
@@ -393,11 +371,12 @@
 			#address-cells = <1>;
         	#size-cells = <0>;
 			num-tpg-channels = <36>;
-			num-channels = <6>;
+			num-channels = <4>;
 		 	status = "okay"; 
 	
 			csi_chan0: channel@0 {
 				status = "okay";
+				reg = <0>;
 				ports {					
 					csi_chan0_port0: port@0 {
 						#address-cells = <1>;
@@ -426,6 +405,7 @@
 			};
 			csi_chan1: channel@1 {
 				status = "okay";
+				reg = <1>;
 				ports {
 					csi_chan1_port0: port@0 {
 						#address-cells = <1>;
@@ -453,6 +433,7 @@
 			};
 			csi_chan2: channel@2 {
 				status = "okay";
+				reg = <2>;
 				ports {
 					csi_chan2_port0: port@0 {
 						#address-cells = <1>;
@@ -480,6 +461,7 @@
 			};
 			csi_chan3: channel@3 {
 				status = "okay";
+				reg = <3>;
 				ports {
 					csi_chan3_port0: port@0 {
 						#address-cells = <1>;
@@ -505,52 +487,6 @@
 					};
 				};
 			};
-			csi_chan4: channel@4 {
-				status = "disabled";
-				ports {
-					csi_chan4_port0: port@0 {
-						#address-cells = <1>;
-        				#size-cells = <0>;
-						status = "disabled";
-						reg = <0>;
-						csi_in4: endpoint@8 {
-							status = "disabled";
-						};
-					};
-					csi_chan4_port1: port@1 {
-						#address-cells = <1>;
-        				#size-cells = <0>;
-						status = "disabled";
-						reg = <1>;
-						csi_out4: endpoint@9 {
-							status = "disabled";
-						};
-					};
-				};
-			};
-			csi_chan5: channel@5 {
-				status = "disabled";
-				ports {
-					csi_chan5_port0: port@0 {
-						#address-cells = <1>;
-        				#size-cells = <0>;
-						status = "disabled";
-						reg = <0>;
-						csi_in5: endpoint@10 {
-							status = "disabled";
-						};
-					};
-					csi_chan5_port1: port@1 {
-						#address-cells = <1>;
-        				#size-cells = <0>;
-						status = "disabled";
-						reg = <1>;
-						csi_out5: endpoint@11 {
-							status = "disabled";
-						};
-					};
-				};
-			};
 		};
 	};
 
@@ -570,9 +506,7 @@
 				badge = "ar0820_a";
 				position = "topleft";
 				orientation = "1";
-				status = "okay";
 				drivernode0 {
-					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ar0820 30-0010";
 					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@0/ar0820_a@10";
@@ -583,9 +517,7 @@
 				badge = "ar0820_b";
 				position = "bottomleft";
 				orientation = "1";
-				status = "okay";
 				drivernode0 {
-					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ar0820 31-0010";
 					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@1/ar0820_b@10";
@@ -596,9 +528,7 @@
 				badge = "ar0820_c";
 				position = "topright";
 				orientation = "1";
-				status = "okay";
 				drivernode0 {
-					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ar0820 32-0010";
 					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@2/ar0820_c@10";
@@ -609,13 +539,66 @@
 				badge = "ar0820_d";
 				position = "bottomright";
 				orientation = "1";
-				status = "okay";
 				drivernode0 {
-					status = "okay";
 					pcl_id = "v4l2_sensor";
 					devname = "ar0820 33-0010";
 					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@3/ar0820_d@10";
 				};
+			};
+		};
+	};
+
+	tegra-virtual-camera-platform
+	{
+		isp_bw_margin_pct = <0x19>;
+		isp_peak_byte_per_pixel = <0x5>;
+
+		modules
+		{
+			module0
+			{
+				badge = "vivid_front_instance0";
+				position = "front";
+				orientation = [31 00];
+
+				drivernode0
+				{
+					devname = "tegra-vivid-000";
+					pcl_id = "v4l2_sensor_virtual";
+					proc-device-tree = "/proc/device-tree/vivid-driver/instances/instance0";
+				};
+			};
+		};
+	};
+
+	vivid-driver
+	{
+		instance0
+		{
+			mode0
+			{
+				line_length = "2200";
+				active_w = "1920";
+				vert_front_porch = [34 00];
+				horz_back_porch = "148";
+				embedded_metadata_height = [31 00];
+				pixel_t = "bayer_bggr10";
+				pix_clk_hz = "74250000";
+				max_gain_val = "256";
+				vert_back_porch = "36";
+				vert_sync = [35 00];
+				readout_orientation = "90";
+				min_gain_val = [31 00];
+				tegra_sinterface = "host";
+				min_framerate = [31 00];
+				max_framerate = "30";
+				horz_sync = "44";
+				gain_factor = "16";
+				framerate_factor = [31 00];
+				active_h = "1080";
+				max_exp_time = "999994";
+				horz_front_porch = "88";
+				min_exp_time = "34";
 			};
 		};
 	};
