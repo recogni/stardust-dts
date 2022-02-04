@@ -526,7 +526,6 @@
 		csi_base: nvcsi@15a00000 {
 			#address-cells = <1>;
         	#size-cells = <0>;
-			num-tpg-channels = <36>;
 			num-channels = <4>;
 		 	status = "okay"; 
 	
