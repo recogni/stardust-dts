@@ -124,7 +124,7 @@
 								vc-id = <0x0>;
 								port-index = <0x6>;
 								bus-width = <0x4>;
-								remote-endpoint = <&csi_chan0_port0>;
+								remote-endpoint = <&csi_in0>;
 							};
 						};
 					};
@@ -229,7 +229,7 @@
 								vc-id = <0x0>;
 								port-index = <0x4>;
 								bus-width = <0x4>;
-								remote-endpoint = <&csi_chan1_port0>;
+								remote-endpoint = <&csi_in1>;
 							};
 						};
 					};
@@ -335,7 +335,7 @@
 								vc-id = <0x0>;
 								port-index = <0x2>;
 								bus-width = <0x4>;
-								remote-endpoint = <&csi_chan2_port0>;
+								remote-endpoint = <&csi_in2>;
 							};
 						};
 					};
@@ -441,7 +441,7 @@
 								vc-id = <0x0>;
 								port-index = <0x0>;
 								bus-width = <0x4>;
-								remote-endpoint = <&csi_chan3_port0>;
+								remote-endpoint = <&csi_in3>;
 							};
 						};
 					};
@@ -479,7 +479,7 @@
 						port-index = <6>;
 						bus-width = <0x4>;
 						status = "okay";
-						remote-endpoint = <&csi_chan0_port1>;
+						remote-endpoint = <&csi_out0>;
 					};
 				};
 				vi_port1: port@1 {
@@ -492,7 +492,7 @@
 						port-index = <4>;
 						bus-width = <0x4>;
 						status = "okay";
-						remote-endpoint = <&csi_chan1_port1>;						
+						remote-endpoint = <&csi_out1>;						
 					};
 				};
 				vi_port2: port@2 {
@@ -505,7 +505,7 @@
 						port-index = <2>;
 						bus-width = <0x4>;
 						status = "okay";
-						remote-endpoint = <&csi_chan2_port1>;												
+						remote-endpoint = <&csi_out2>;												
 					};
 				};
 				vi_port3: port@3 {
@@ -518,7 +518,7 @@
 						port-index = <0>;
 						bus-width = <0x4>;
 						status = "okay";
-						remote-endpoint = <&csi_chan3_port1>;																};
+						remote-endpoint = <&csi_out3>;																};
 				};
 			};
 		};
@@ -552,7 +552,7 @@
 						status = "okay";
 						reg = <1>;
 						csi_out0: endpoint@1 {
-							remote-endpoint = <&vi_port0>;
+							remote-endpoint = <&vi_in0>;
 							status = "okay";
 						};
 					};
@@ -580,7 +580,7 @@
 						status = "okay";
 						reg = <1>;
 						csi_out1: endpoint@3 {
-							remote-endpoint = <&vi_port1>;
+							remote-endpoint = <&vi_in1>;
 							status = "okay";
 						};
 					};
@@ -608,7 +608,7 @@
 						status = "okay";
 						reg = <1>;
 						csi_out2: endpoint@5 {
-							remote-endpoint = <&vi_port2>;
+							remote-endpoint = <&vi_in2>;
 							status = "okay";
 						};
 					};
@@ -636,7 +636,7 @@
 						status = "okay";
 						reg = <1>;
 						csi_out3: endpoint@7 {
-							remote-endpoint = <&vi_port3>;
+							remote-endpoint = <&vi_in3>;
 							status = "okay";
 						};
 					};
