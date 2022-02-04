@@ -74,6 +74,45 @@
 					nvidia,gmsl-ser-device = <&ser_a_ar0820>;
 					nvidia,gmsl-dser-device = <&dser_a_ar0820>;	
 
+					mode0 {
+						default_framerate = "30000000";
+						step_exp_time = [31 00];
+						line_length = "1336";
+						active_w = "3840";
+						embedded_metadata_height = [30 00];
+						pixel_phase = "grbg";
+						pix_clk_hz = "156000000";
+						dynamic_pixel_bit_depth = "12";
+						dpcm_enable = "false";
+						mode_type = "bayer";
+						num_lanes = [34 00];
+						inherent_gain = [31 00];
+						max_gain_val = "499";
+						min_hdr_ratio = [31 00];
+						discontinuous_clk = "no";
+						readout_orientation = [30 00];
+						min_gain_val = "399";
+						max_hdr_ratio = [31 00];
+						tegra_sinterface = "serial_g";
+						step_gain_val = [31 00];
+						default_gain = "399";
+						csi_pixel_bit_depth = "12";
+						min_framerate = "30000000";
+						default_exp_time = "1000";
+						max_framerate = "30000000";
+						exposure_factor = "1000000";
+						step_framerate = [31 00];
+						phy_mode = "DPHY";
+						mclk_khz = "27000";
+						cil_settletime = [30 00];
+						gain_factor = "100";
+						framerate_factor = "1000000";
+						active_h = "2160";
+						serdes_pix_clk_hz = "1500000000";
+						max_exp_time = "6800";
+						min_exp_time = "100";
+					};
+
 					ports {
 						reg = <0x0>;
 						#address-cells = <1>;
@@ -139,6 +178,45 @@
 					mclk = "extperiph1";
 					nvidia,gmsl-ser-device = <&ser_b_ar0820>;
 					nvidia,gmsl-dser-device = <&dser_b_ar0820>;	
+
+					mode0 {
+						default_framerate = "30000000";
+						step_exp_time = [31 00];
+						line_length = "1336";
+						active_w = "3840";
+						embedded_metadata_height = [30 00];
+						pixel_phase = "grbg";
+						pix_clk_hz = "156000000";
+						dynamic_pixel_bit_depth = "12";
+						dpcm_enable = "false";
+						mode_type = "bayer";
+						num_lanes = [34 00];
+						inherent_gain = [31 00];
+						max_gain_val = "499";
+						min_hdr_ratio = [31 00];
+						discontinuous_clk = "no";
+						readout_orientation = [30 00];
+						min_gain_val = "399";
+						max_hdr_ratio = [31 00];
+						tegra_sinterface = "serial_g";
+						step_gain_val = [31 00];
+						default_gain = "399";
+						csi_pixel_bit_depth = "12";
+						min_framerate = "30000000";
+						default_exp_time = "1000";
+						max_framerate = "30000000";
+						exposure_factor = "1000000";
+						step_framerate = [31 00];
+						phy_mode = "DPHY";
+						mclk_khz = "27000";
+						cil_settletime = [30 00];
+						gain_factor = "100";
+						framerate_factor = "1000000";
+						active_h = "2160";
+						serdes_pix_clk_hz = "1500000000";
+						max_exp_time = "6800";
+						min_exp_time = "100";
+					};
 
 					ports {
 						reg = <0x0>;
@@ -207,6 +285,45 @@
 					nvidia,gmsl-ser-device = <&ser_c_ar0820>;
 					nvidia,gmsl-dser-device = <&dser_c_ar0820>;	
 
+					mode0 {
+						default_framerate = "30000000";
+						step_exp_time = [31 00];
+						line_length = "1336";
+						active_w = "3840";
+						embedded_metadata_height = [30 00];
+						pixel_phase = "grbg";
+						pix_clk_hz = "156000000";
+						dynamic_pixel_bit_depth = "12";
+						dpcm_enable = "false";
+						mode_type = "bayer";
+						num_lanes = [34 00];
+						inherent_gain = [31 00];
+						max_gain_val = "499";
+						min_hdr_ratio = [31 00];
+						discontinuous_clk = "no";
+						readout_orientation = [30 00];
+						min_gain_val = "399";
+						max_hdr_ratio = [31 00];
+						tegra_sinterface = "serial_g";
+						step_gain_val = [31 00];
+						default_gain = "399";
+						csi_pixel_bit_depth = "12";
+						min_framerate = "30000000";
+						default_exp_time = "1000";
+						max_framerate = "30000000";
+						exposure_factor = "1000000";
+						step_framerate = [31 00];
+						phy_mode = "DPHY";
+						mclk_khz = "27000";
+						cil_settletime = [30 00];
+						gain_factor = "100";
+						framerate_factor = "1000000";
+						active_h = "2160";
+						serdes_pix_clk_hz = "1500000000";
+						max_exp_time = "6800";
+						min_exp_time = "100";
+					};
+
 					ports {
 						reg = <0x0>;
 						#address-cells = <1>;
@@ -239,7 +356,7 @@
 		
 			// I2C mux select 1 on JCB002
 			i2c@3 {
-				reg = <0>;
+				reg = <3>;
 				i2c-mux,deselect-on-exit;
 				#address-cells = <1>;
 					#size-cells = <0>;
@@ -273,6 +390,45 @@
 					mclk = "extperiph1";
 					nvidia,gmsl-ser-device = <&ser_d_ar0820>;
 					nvidia,gmsl-dser-device = <&dser_d_ar0820>;	
+
+					mode0 {
+						default_framerate = "30000000";
+						step_exp_time = [31 00];
+						line_length = "1336";
+						active_w = "3840";
+						embedded_metadata_height = [30 00];
+						pixel_phase = "grbg";
+						pix_clk_hz = "156000000";
+						dynamic_pixel_bit_depth = "12";
+						dpcm_enable = "false";
+						mode_type = "bayer";
+						num_lanes = [34 00];
+						inherent_gain = [31 00];
+						max_gain_val = "499";
+						min_hdr_ratio = [31 00];
+						discontinuous_clk = "no";
+						readout_orientation = [30 00];
+						min_gain_val = "399";
+						max_hdr_ratio = [31 00];
+						tegra_sinterface = "serial_g";
+						step_gain_val = [31 00];
+						default_gain = "399";
+						csi_pixel_bit_depth = "12";
+						min_framerate = "30000000";
+						default_exp_time = "1000";
+						max_framerate = "30000000";
+						exposure_factor = "1000000";
+						step_framerate = [31 00];
+						phy_mode = "DPHY";
+						mclk_khz = "27000";
+						cil_settletime = [30 00];
+						gain_factor = "100";
+						framerate_factor = "1000000";
+						active_h = "2160";
+						serdes_pix_clk_hz = "1500000000";
+						max_exp_time = "6800";
+						min_exp_time = "100";
+					};
 
 					ports {
 						#address-cells = <1>;
@@ -547,6 +703,16 @@
 			};
 		};
 	};
+	
+
+	// ConnectTech JCB002 board requires 2v8 supply to power deserializers
+	fixed-regulators {
+		regulator@107 {
+			regulator-always-on;
+			regulator-boot-on;
+		};
+    };
+
 
 	tegra-virtual-camera-platform
 	{
