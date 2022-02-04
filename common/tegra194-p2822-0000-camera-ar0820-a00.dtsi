@@ -26,8 +26,8 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		tca9546@72 {
-			compatible = "nxp,pca9546";
+		tca9544@72 {
+			compatible = "nxp,pca9544";
 			reg = <0x72>;
 			#address-cells = <1>;
 			#size-cells = <0>;
@@ -665,7 +665,7 @@
 				drivernode0 {
 					pcl_id = "v4l2_sensor";
 					devname = "ar0820 30-0010";
-					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@0/ar0820_a@10";
+					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9544@72/i2c@0/ar0820_a@10";
 				};
 			};
 
@@ -676,7 +676,7 @@
 				drivernode0 {
 					pcl_id = "v4l2_sensor";
 					devname = "ar0820 31-0010";
-					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@1/ar0820_b@10";
+					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9544@72/i2c@1/ar0820_b@10";
 				};
 			};
 
@@ -687,7 +687,7 @@
 				drivernode0 {
 					pcl_id = "v4l2_sensor";
 					devname = "ar0820 32-0010";
-					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@2/ar0820_c@10";
+					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9544@72/i2c@2/ar0820_c@10";
 				};
 			};
 
@@ -698,7 +698,7 @@
 				drivernode0 {
 					pcl_id = "v4l2_sensor";
 					devname = "ar0820 33-0010";
-					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9546@72/i2c@3/ar0820_d@10";
+					proc-device-tree = "/proc/device-tree/i2c@c250000/tca9544@72/i2c@3/ar0820_d@10";
 				};
 			};
 		};
@@ -714,58 +714,5 @@
     };
 
 
-	tegra-virtual-camera-platform
-	{
-		isp_bw_margin_pct = <0x19>;
-		isp_peak_byte_per_pixel = <0x5>;
 
-		modules
-		{
-			module0
-			{
-				badge = "vivid_front_instance0";
-				position = "front";
-				orientation = [31 00];
-
-				drivernode0
-				{
-					devname = "tegra-vivid-000";
-					pcl_id = "v4l2_sensor_virtual";
-					proc-device-tree = "/proc/device-tree/vivid-driver/instances/instance0";
-				};
-			};
-		};
-	};
-
-	vivid-driver
-	{
-		instance0
-		{
-			mode0
-			{
-				line_length = "2200";
-				active_w = "1920";
-				vert_front_porch = [34 00];
-				horz_back_porch = "148";
-				embedded_metadata_height = [31 00];
-				pixel_t = "bayer_bggr10";
-				pix_clk_hz = "74250000";
-				max_gain_val = "256";
-				vert_back_porch = "36";
-				vert_sync = [35 00];
-				readout_orientation = "90";
-				min_gain_val = [31 00];
-				tegra_sinterface = "host";
-				min_framerate = [31 00];
-				max_framerate = "30";
-				horz_sync = "44";
-				gain_factor = "16";
-				framerate_factor = [31 00];
-				active_h = "1080";
-				max_exp_time = "999994";
-				horz_front_porch = "88";
-				min_exp_time = "34";
-			};
-		};
-	};
 };
