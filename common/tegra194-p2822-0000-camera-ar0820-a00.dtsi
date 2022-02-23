@@ -728,6 +728,6 @@
 		enable-active-high;
 		regulator-always-on;
 		regulator-boot-on;
-	}
+	};
 	
 };
